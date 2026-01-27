@@ -19,6 +19,27 @@ func TestLoadConfig(t *testing.T) {
 			wantConfig: Config{},
 			wantErr:    false,
 		},
+		{
+			name:    "should load config :POS",
+			cfgPath: "testdata/config.yaml",
+			wantConfig: Config{
+				Env: []EnvVar{
+					{Key: "EDITOR", Value: "nvim"},
+					{Key: "PATH", Value: "${PATH}:${HOME}/.local/bin"},
+					{Key: "XDG_CONFIG_HOME", Value: "${HOME}/.config"},
+				},
+				Interpreter: "/bin/sh",
+				Startup: []string{
+					"dunst",
+					"picom --backend glx",
+				},
+				Scripts: []string{
+					"hour=$(date +%H)\necho \"${hour}\"\n",
+					"echo \"hello\"\n",
+				},
+			},
+			wantErr: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

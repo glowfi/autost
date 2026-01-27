@@ -1,0 +1,18 @@
+env:
+  - EDITOR: nvim
+  - PATH: "${PATH}:${HOME}/.local/bin"
+  - XDG_CONFIG_HOME: "${HOME}/.config"
+
+interpreter: /bin/sh
+
+startup:
+  - dunst
+  - picom --backend glx
+
+scripts:
+  - |
+    hour=$(date +%H)
+    echo "${hour}"
+
+  - |
+    echo "hello"
