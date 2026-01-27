@@ -13,8 +13,8 @@ import (
 // Executor runs commands and scripts
 type Executor struct{}
 
-// New creates a new executor
-func New() *Executor {
+// NewExecutor creates a new executor
+func NewExecutor() *Executor {
 	return &Executor{}
 }
 
