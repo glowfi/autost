@@ -1,6 +1,5 @@
 env:
   - EDITOR: nvim
-  - PATH: "${PATH}:${HOME}/.local/bin"
   - XDG_CONFIG_HOME: "${HOME}/.config"
 
 interpreter: /bin/sh

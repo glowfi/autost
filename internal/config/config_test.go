@@ -1,6 +1,8 @@
 package config
 
 import (
+	"fmt"
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -31,8 +33,7 @@ func TestLoadConfig(t *testing.T) {
 			wantConfig: Config{
 				Env: []EnvVar{
 					{Key: "EDITOR", Value: "nvim"},
-					{Key: "PATH", Value: "${PATH}:${HOME}/.local/bin"},
-					{Key: "XDG_CONFIG_HOME", Value: "${HOME}/.config"},
+					{Key: "XDG_CONFIG_HOME", Value: fmt.Sprintf("/home/%s/.config", os.Getenv("USER"))},
 				},
 				Interpreter: "/bin/sh",
 				Startup: []string{

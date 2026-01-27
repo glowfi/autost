@@ -30,7 +30,7 @@ func (e *EnvVar) UnmarshalYAML(data []byte) error {
 			return ErrEmptyValue
 		}
 		key = k
-		val = v
+		val = os.ExpandEnv(v)
 		break
 	}
 
