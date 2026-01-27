@@ -11,13 +11,19 @@ func TestLoadConfig(t *testing.T) {
 		name       string
 		cfgPath    string
 		wantConfig Config
-		wantErr    bool
+		wantErr    error
 	}{
+		{
+			name:       "should return error when loading config with missing values from env variables :NEG",
+			cfgPath:    "testdata/invalid_env_var.yaml",
+			wantConfig: Config{},
+			wantErr:    ErrEmptyValue,
+		},
 		{
 			name:       "should return no error when loading empty config :POS",
 			cfgPath:    "testdata/empty.yaml",
 			wantConfig: Config{},
-			wantErr:    false,
+			wantErr:    nil,
 		},
 		{
 			name:    "should load config :POS",
@@ -38,18 +44,14 @@ func TestLoadConfig(t *testing.T) {
 					"echo \"hello\"\n",
 				},
 			},
-			wantErr: false,
+			wantErr: nil,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			gotConfig, gotErr := LoadConfig(tt.cfgPath)
 
-			if tt.wantErr {
-				assert.Error(t, gotErr, "expect error while loading config")
-			}
-
-			assert.NoError(t, gotErr, "expect no error while loading config")
+			assert.ErrorIs(t, gotErr, tt.wantErr, "expect error to match")
 			assert.Equal(t, tt.wantConfig, gotConfig, "expect config to match")
 		})
 	}

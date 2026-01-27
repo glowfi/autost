@@ -8,7 +8,7 @@ import (
 	"github.com/goccy/go-yaml"
 )
 
-var ErrEmptyKeyValue = errors.New("key or value of environment variables cannot be empty")
+var ErrEmptyValue = errors.New("values of environment variables cannot be empty")
 
 type EnvVar struct {
 	Key   string
@@ -27,7 +27,7 @@ func (e *EnvVar) UnmarshalYAML(data []byte) error {
 
 	for k, v := range m {
 		if strings.TrimSpace(k) == "" || strings.TrimSpace(v) == "" {
-			return ErrEmptyKeyValue
+			return ErrEmptyValue
 		}
 		key = k
 		val = v
