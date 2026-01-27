@@ -8,7 +8,10 @@ import (
 	"github.com/goccy/go-yaml"
 )
 
-var ErrEmptyValue = errors.New("values of environment variables cannot be empty")
+var (
+	ErrEmptyValue         = errors.New("values of environment variables cannot be empty")
+	ErrMissingInterpreter = errors.New("interpreter must be mentioned when using scripts and startup commands")
+)
 
 type EnvVar struct {
 	Key   string
@@ -48,10 +51,10 @@ func (e EnvVar) MarshalYAML() ([]byte, error) {
 }
 
 type Config struct {
-	Env         []EnvVar `yaml:"env"`
-	Interpreter string   `yaml:"interpreter"`
-	Startup     []string `yaml:"startup"`
-	Scripts     []string `yaml:"scripts"`
+	Env         []EnvVar `yaml:"env,omitempty"`
+	Interpreter string   `yaml:"interpreter,,omitempty"`
+	Startup     []string `yaml:"startup,,omitempty"`
+	Scripts     []string `yaml:"scripts,,omitempty"`
 }
 
 func LoadConfig(path string) (Config, error) {
@@ -63,6 +66,14 @@ func LoadConfig(path string) (Config, error) {
 	var cfg Config
 	if err := yaml.Unmarshal(data, &cfg); err != nil {
 		return Config{}, err
+	}
+
+	if len(cfg.Scripts) > 0 && cfg.Interpreter == "" {
+		return Config{}, ErrMissingInterpreter
+	}
+
+	if len(cfg.Startup) > 0 && cfg.Interpreter == "" {
+		return Config{}, ErrMissingInterpreter
 	}
 
 	return cfg, nil

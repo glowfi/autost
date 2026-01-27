@@ -22,6 +22,12 @@ func TestLoadConfig(t *testing.T) {
 			wantErr:    ErrEmptyValue,
 		},
 		{
+			name:       "should return error when no interpreter is mentioned but using startup commands and scripts :NEG",
+			cfgPath:    "testdata/missing_interpreter.yaml",
+			wantConfig: Config{},
+			wantErr:    ErrMissingInterpreter,
+		},
+		{
 			name:       "should return no error when loading empty config :POS",
 			cfgPath:    "testdata/empty.yaml",
 			wantConfig: Config{},

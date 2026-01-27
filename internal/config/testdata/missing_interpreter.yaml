@@ -1,0 +1,11 @@
+startup:
+  - dunst
+  - picom --backend glx
+
+scripts:
+  - |
+    hour=$(date +%H)
+    echo "${hour}"
+
+  - |
+    echo "hello"
