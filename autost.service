@@ -5,7 +5,7 @@ After=graphical-session.target
 [Service]
 Type=simple
 ExecStartPre=/bin/sleep 2
-ExecStart=/usr/bin/autost
+ExecStart=/usr/local/bin/autost
 RemainAfterExit=yes
 Environment="DISPLAY=:0"
 
