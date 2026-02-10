@@ -1,0 +1,13 @@
+[Unit]
+Description=Autostart Programs
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStartPre=/bin/sleep 2
+ExecStart=/usr/bin/autost
+RemainAfterExit=yes
+Environment="DISPLAY=:0"
+
+[Install]
+WantedBy=default.target
