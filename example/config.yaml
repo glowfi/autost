@@ -1,0 +1,22 @@
+env:
+  - HELLO: world
+
+interpreter: /bin/sh
+
+startup:
+  - xrandr --output eDP-1 --mode 1920x1080
+  - sh $HOME/.local/bin/wall.sh
+  - clipmenud
+  - volnoti
+  - xautolock -time 10 -locker slock
+  - redshift -P -O 4500K
+  - dwmblocks
+  - alttab -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64 -w 1
+  - dunst
+  - picom -b
+  - ghkd -b -c ~/.config/ghkd/config.yaml
+
+scripts:
+  - |
+    find "$HOME/.cache/" -name "lowbat*" -delete
+    $HOME/.local/bin/lowbat.sh
