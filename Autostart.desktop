@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Autostart Program
+Exec="sh" "-c" "/usr/local/bin/autost"
+X-GNOME-Autostart-enabled=true
