@@ -2,21 +2,13 @@
 
 # ⚡ autost
 
-### Declarative Linux session autostart — reproducible, minimal, and scriptable
+### Replace fragile shell startup programs with a clean, validated YAML configuration.
 
 <p>
   <img src="https://img.shields.io/github/go-mod/go-version/glowfi/autost?style=for-the-badge">
   <img src="https://img.shields.io/github/license/glowfi/autost?style=for-the-badge">
   <img src="https://img.shields.io/github/stars/glowfi/autost?style=for-the-badge">
   <img src="https://img.shields.io/github/last-commit/glowfi/autost?style=for-the-badge">
-</p>
-
-<p>
-  <strong>A lightweight startup manager for Linux desktops and window managers.</strong>
-</p>
-
-<p>
-  Replace fragile shell startup scripts with a clean, validated YAML configuration.
 </p>
 
 </div>
@@ -293,17 +285,6 @@ Design goals:
 - No privilege escalation
 - Temporary scripts created in `/tmp`
 - Environment variables validated before export
-
----
-
-## 🛠 Roadmap
-
-- [ ] Parallel execution groups
-- [ ] Dependency ordering
-- [ ] Restart policies
-- [ ] Logging levels
-- [ ] Dry-run mode
-- [ ] systemd user integration
 
 ---
 
